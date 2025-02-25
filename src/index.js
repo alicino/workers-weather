@@ -1,12 +1,17 @@
 export default {
   async fetch(request, env) {
-    const apiKey = env.OPENWEATHER_API_KEY;  // Pegando a chave do Dashboard
-    const city = "Austin";
-    const temperature = await getTemperature(city, apiKey);
+    try {
+      const apiKey = env.OPENWEATHER_API_KEY;  // Pegando a chave do Dashboard
+      const city = "Austin";
+      const temperature = await getTemperature(city, apiKey);
 
-    return new Response(`Temperature in ${city}: ${temperature}°C`, {
-      headers: { "Content-Type": "text/html" },
-    });
+      return new Response(generateHTML(city, temperature), {
+        headers: { "Content-Type": "text/html; charset=UTF-8" },
+      });
+
+    } catch (error) {
+      return new Response("Error fetching weather data.", { status: 500 });
+    }
   }
 };
 
@@ -19,4 +24,32 @@ async function getTemperature(city, apiKey) {
 
   const data = await response.json();
   return data.main.temp;
+}
+
+// Função para gerar a página HTML corrigida
+function generateHTML(city, temperature) {
+  return `
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Weather in ${city}</title>
+      <style>
+        body {
+          font-family: Arial, sans-serif;
+          text-align: center;
+          margin: 50px;
+        }
+        h1 {
+          font-size: 2rem;
+        }
+      </style>
+    </head>
+    <body>
+      <h1>Weather in ${city}</h1>
+      <p>The current temperature is <strong>${temperature.toFixed(1)}°C</strong>.</p>
+    </body>
+    </html>
+  `;
 }

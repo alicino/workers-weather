@@ -1,9 +1,8 @@
 name = "workers-weather"
 type = "javascript"
 
-account_id = "ACCOUNT_ID"
 workers_dev = true  # Permite rodar sem domínio próprio
-main = "src/index.js"  # Define corretamente o arquivo de entrada
+main = "src/index.js"  # Arquivo de entrada
 
 # Configuração para produção (sem zone_id)
 [env.production]

@@ -2,7 +2,10 @@ name = "workers-weather"
 type = "javascript"
 
 workers_dev = true  # Permite rodar sem domínio próprio
-main = "src/index.js"  # Arquivo de entrada
+main = "src/index.js"  # Define corretamente o arquivo de entrada
+
+# Define a data de compatibilidade exigida pelo Cloudflare
+compatibility_date = "2025-02-25"  # Atualize para a data atual
 
 # Configuração para produção (sem zone_id)
 [env.production]

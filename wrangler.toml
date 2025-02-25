@@ -1,4 +1,4 @@
-name = "cloudflare-weather-worker"
+name = "workers-weather"
 type = "javascript"
 
 account_id = "ACCOUNT_ID"

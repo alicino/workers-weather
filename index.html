@@ -1,0 +1,59 @@
+export default {
+    async fetch(request, env) {
+      try {
+        // Definir cidade fixa como Austin, TX
+        const city = "Austin";
+        
+        // Obtém a temperatura da cidade utilizando a API OpenWeather
+        const temperature = await getTemperature(city, env.OPENWEATHER_API_KEY);
+  
+        // Retorna uma página HTML dinâmica com a temperatura
+        return new Response(generateHTML(city, temperature), {
+          headers: { "Content-Type": "text/html" },
+        });
+  
+      } catch (error) {
+        return new Response("Error fetching weather data.", { status: 500 });
+      }
+    },
+  };
+  
+  // Função para buscar a temperatura de Austin, TX na API do OpenWeather
+  async function getTemperature(city, apiKey) {
+    const weatherURL = `https://api.openweathermap.org/data/2.5/weather?q=${city},US&units=metric&appid=${apiKey}`;
+  
+    const response = await fetch(weatherURL);
+    if (!response.ok) throw new Error("Failed to fetch weather data");
+  
+    const data = await response.json();
+    return data.main.temp; // Retorna a temperatura em °C
+  }
+  
+  // Função para gerar a página HTML dinâmica
+  function generateHTML(city, temperature) {
+    return `
+      <!DOCTYPE html>
+      <html lang="en">
+      <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Weather in Austin, TX</title>
+        <style>
+          body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+          }
+          h1 {
+            font-size: 2rem;
+          }
+        </style>
+      </head>
+      <body>
+        <h1>Weather in ${city}, TX</h1>
+        <p>The current temperature is <strong>${temperature}°C</strong>.</p>
+      </body>
+      </html>
+    `;
+  }
+  

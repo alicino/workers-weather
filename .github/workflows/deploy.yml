@@ -1,0 +1,20 @@
+name: Deploy Cloudflare Worker
+
+on:
+  push:
+    branches:
+      - main  # Executa quando houver push na branch "main"
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Install Wrangler
+        run: npm install -g wrangler
+
+      - name: Deploy Worker
+        run: wrangler deploy --account-id ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}

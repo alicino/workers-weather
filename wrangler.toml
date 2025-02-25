@@ -2,9 +2,10 @@ name = "cloudflare-weather-worker"
 type = "javascript"
 
 account_id = "ACCOUNT_ID"
-workers_dev = true  # Permite rodar em workers.dev
+workers_dev = true  # Permite rodar sem domínio próprio
+main = "src/index.js"  # Define corretamente o arquivo de entrada
 
-# Configuração de ambiente para produção (não expõe zone_id)
+# Configuração para produção (sem zone_id)
 [env.production]
-route = "weather.seudominio.com/*"  # Configure no Dashboard da Cloudflare
+route = "weather.alicinomoura.xyz/*"
 

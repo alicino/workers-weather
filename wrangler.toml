@@ -1,0 +1,10 @@
+name = "cloudflare-weather-worker"
+type = "javascript"
+
+account_id = "ACCOUNT_ID"
+workers_dev = true  # Permite rodar em workers.dev
+
+# Configuração de ambiente para produção (não expõe zone_id)
+[env.production]
+route = "weather.seudominio.com/*"  # Configure no Dashboard da Cloudflare
+

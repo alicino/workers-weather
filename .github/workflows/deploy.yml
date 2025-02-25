@@ -17,4 +17,4 @@ jobs:
         run: npm install -g wrangler
 
       - name: Deploy Worker
-        run: wrangler deploy --account-id ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: wrangler deploy --account-id "${{ secrets.CLOUDFLARE_ACCOUNT_ID }}"

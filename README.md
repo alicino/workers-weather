@@ -22,9 +22,12 @@ https://weather.alicinomoura.xyz
 
 ### Fluxo
 
-```flowchart TD
-A(fa:fa-user Website) --> B(Cloudflare Workers)
-B --> C(fa:fa-external-link API Weather)
-C --> D(Temperatura de Austin, TX)
-D --> A(fa:fa-firefox HTML com temperatura)
+```mermaid
+flowchart TD;
+    A(fa:fa-user Website) --> B(Cloudflare Workers)
+    B --> C(fa:fa-external-link API Weather)
+    C --> D(Temperatura de Austin, TX)
+    D --> E(fa:fa-firefox HTML com temperatura)
+    E --> A
 ```
+

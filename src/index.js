@@ -35,6 +35,9 @@ function generateHTML(city, temperature) {
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title>Weather in ${city}</title>
+      <meta name="description" content="Educational weather information for Austin, Texas. Stay informed with real-time weather data.">
+      <meta name="keywords" content="Education, Weather, Austin, School, Learning, Climate, Temperature">
+      <meta name="author" content="Alicino Moura">
       <style>
         body {
           font-family: Arial, sans-serif;
